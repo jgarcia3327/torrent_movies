@@ -1,0 +1,104 @@
+body,h1,h2,h3,h4,h5 {font-family: "Raleway", sans-serif}
+.w3-third img{margin-bottom: -6px; opacity: 1; cursor: pointer}
+.w3-third img:hover{
+  opacity: 0.4;
+  transition: opacity 0.2s linear;
+}
+ol>li>strong{
+    color: #000;
+}
+ol>li {
+  text-align: left;
+}
+.w3-third > div {
+  position: relative;
+  text-align: center;
+  background-color: #e8a631c4;
+}
+.w3-third > div > span {
+  position: absolute;
+  left: 10px;
+  top: 10px;
+  font-size: 40px;
+  color: #af0808;
+  text-shadow: 2px 2px 3px #ffc107;
+}
+p#caption {
+  font-size: 21px;
+  letter-spacing: 0.08em;
+  margin: 0;
+}
+.videowrapper {
+    float: none;
+    clear: both;
+    width: 100%;
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 25px;
+    height: 0;
+}
+.videowrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+.loader {
+  display: block;
+  width: 100%;
+  text-align: center;
+  background-color: #fff;
+}
+.loader img {
+  width: 198px;
+  margin-top: 60px;
+  margin-bottom: 90px;
+}
+.torrent-download {
+  background-color: #fff;
+  padding: 8px 10px;
+  min-height: 90px;
+  line-height: 1.6em;
+  text-align: left;
+}
+.refresh-wrapper {
+  float: left;
+}
+.refresh-wrapper img {
+  width:60px;
+  cursor:pointer;
+  margin: auto;
+}
+.w3-third > div{
+  background-color: #fff;
+}
+#modal01 .w3-modal-content {
+  padding: 0 !important;
+}
+#modal01 .w3-modal-content #caption i {
+    font-size: 15px;
+}
+@media (max-width: 768px) {
+  .refresh-wrapper {
+    width: 100%;
+    display: flex;
+    float: unset;
+  }
+  .w3-main {
+    margin-left: 48px !important;
+    margin-right: 48px !important;
+  }
+  body.w3-light-grey.w3-content {
+    background-color: #fff !important;
+  }
+}
+@media (min-width: 601px) {
+  .w3-third {
+      width: 100%;
+  }
+  .w3-third > div {
+    width: 33%;
+    display: table-cell;
+  }
+}

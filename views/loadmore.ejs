@@ -1,0 +1,44 @@
+<!-- Photo grid -->
+<div class="w3-row">
+  <div class="w3-third">
+<% movies.forEach(function(movie, i){%>
+    <div>
+      <img class="movie-img" src="<%= movie.large_cover_image %>" title="View movie trailer" style="width:100%" onclick="onClick(this,'<%=movie.yt_trailer_code%>')" 
+      alt="<strong><%= movie.title_english %></strong> <br> <i>Not playing? see trailer in <a href='https://www.imdb.com/title/<%= movie.imdb_code %>' target='_blank'>IMDb<a></i>">
+      <span><%= movie.rating %></span>
+      <div class="torrent-download"><%= movie.title_english %> (<%= movie.language %>) | <a href="https://www.imdb.com/title/<%= movie.imdb_code %>" title="IMDb link." target="_blank">IMDb</a><br>
+        <%
+        let last_quality = '';
+        let count = 0;
+        for (let i=0; i < movie.torrents.length; i++){
+          let spacer = '';
+          let torrent = movie.torrents[i];
+          if (last_quality == torrent.quality) {
+            continue;
+          }
+          count++;
+          last_quality = torrent.quality;
+          %>
+          <%= torrent.quality %>( 
+          <a href="<%= torrent.url %>" title="Download torrent file.">Torrent</a>,  
+          <a href="magnet:?xt=urn:btih:<%= torrent.hash %>&dn=<%= movie.title_english %>" title="Download using magnet link.">Magnet</a>)
+          <% if (i < (movie.torrents.length - 1) && movie.torrents[i+1].quality != last_quality) {
+              spacer = count % 2 == 0? '\n' : ' | ';
+            }
+          %>
+          <%= spacer %>
+        <%
+        } 
+        %>
+      </div>
+    </div>
+    <% if (i+1 == locals.perPage) { %>
+    </div>
+    <% } else if (i+1 == (locals.perPage/2)) { %>
+    </div></div> <div class="w3-row"> <div class="w3-third">
+    <% } else if ((i+1) % 3 == 0) { %>
+    </div> <div class="w3-third">
+    <% } %>      
+<%}) %>
+</div>
+<!-- End Photo Grid -->

@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Latest Torrent Movies</title>
+<link rel="apple-touch-icon" sizes="180x180" href="../assets/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="../assets/favicon/favicon-16x16.png">
+<link rel="manifest" href="../assets/favicon/site.webmanifest">
+<meta name="description" content="Latest torrent movies." />
+<meta name="author" content="J" />
+<meta name="og:type" content="Website" />
+<meta name="og:site_name" content="Latest quality movies" />
+<meta name="og:title" content="Latest Torrent listings" />
+<meta name="og:description" content="Quality grade latest torrent listings" />
+<meta name="og:url" content="http://cebushopping.com/movies" />
+<meta name="og:locale" content="en_US" />
+<meta name="og:image" content="http://cebushopping.com:25281/assets/cs_movie_torrents.png" />
+<meta name="og:image:width" content="600" />
+<meta name="og:image:height" content="315" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.1/css/all.min.css" integrity="sha512-5Hs3dF2AEPkpNAR7UiOHba+lRSJNeM2ECkwxUIxC1Q/FLycGTbNapWXB4tP889k5T5Ju8fs4b1P5z/iB4nMfSQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link rel="stylesheet" href="/css/movies.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+</head>
+<body class="w3-light-grey w3-content" style="max-width:1060px">
+<!-- Sidebar/menu -->
+<nav class="w3-sidebar w3-bar-block w3-white w3-animate-left w3-text-grey w3-top w3-center" style="z-index:3;width:100%;font-weight:bold;display:none;max-width:1060px" id="mySidebar"><br>
+   <h3>Author Disclaimer:</h3>
+   <p>Intended for author's personal use only.</p>
+   <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">CLOSE</a>
+   <ol style="padding-right:30px;">
+    <li><strong>Information Accuracy:</strong>
+        <ul>
+            <li>The information provided in this website is for API testing purposes only. It is not intended for public use, please avoid any usage to the particular information. The author make no representations or warranties of any kind, express or implied, about the completeness, accuracy, reliability, suitability, or availability of the information.</li>
+        </ul>
+    </li>
+    <li><strong>Personal Responsibility:</strong>
+        <ul>
+            <li>Any reliance you place on the information in this website is strictly at your own risk. You are responsible for ensuring that any information or services available meet your specific requirements.</li>
+        </ul>
+    </li>
+    <li><strong>Third-Party Links:</strong>
+        <ul>
+            <li>The author may provide links to third-party websites or resources generated from the API results. The author is not responsible for the content or availability of these external sites and do not endorse or guarantee the accuracy of the information they contain.</li>
+        </ul>
+    </li>
+    <li><strong>Changes to Disclaimer:</strong>
+        <ul>
+            <li>The author reserve the right to update, change, or modify this disclaimer at any time without notice.</li>
+        </ul>
+    </li>
+   </ol>
+
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-padding">CLOSE</a>
+</nav>
+
+<!-- Top menu on small screens -->
+<header class="w3-container w3-top w3-white w3-xlarge w3-padding-16" style="max-width:1200px;position:relative;">
+  <div class="refresh-wrapper"><img title="Refresh" alt="Refresh" onclick="refresh()" src="../assets/refresh.png"/></div>
+  <span class="w3-left w3-padding">HIGHEST QUALITY - LATEST TORRENT MOVIES</span>
+  <a href="javascript:void(0)" style="font-size:12px;" class="w3-right w3-button w3-white" onclick="w3_open()">Disclaimer</a>
+</header>
+
+<!-- Overlay effect when opening sidebar on small screens -->
+<div class="w3-overlay w3-hide-large w3-animate-opacity" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+
+<!-- !PAGE CONTENT! -->
+<div class="w3-main">
+  <%- include("loadmore.ejs"); %>
+
+  <!-- Modal for full size images on click-->
+  <div id="modal01" class="w3-modal w3-black" style="padding-top:0;padding-bottom:0;height:780px;" onclick="closeModal(this)">
+    <span class="w3-button w3-black w3-xlarge w3-display-topleft" style="position:sticky !important; z-index:9;"><i class="fa-solid fa-xmark"></i> <span style="font-size: 15px;"> / close movie trailer.</span></span>
+    <div class="w3-modal-content w3-animate-zoom w3-center w3-transparent w3-padding">
+      <img style="display:none;" id="img01" class="w3-image">
+      <p id="caption"></p>
+      <div id="summary"></div>
+      <div id="trailer"></div>
+    </div>
+  </div>
+
+<!-- End page content -->
+</div>
+<div class="loader"><span>Loading</span><img src="/assets/loader.gif"><span>movies...</span></div>
+
+<script>
+// Script to open and close sidebar
+function w3_open() {
+  document.getElementById("mySidebar").style.display = "block";
+  document.getElementById("myOverlay").style.display = "block";
+}
+ 
+function w3_close() {
+  document.getElementById("mySidebar").style.display = "none";
+  document.getElementById("myOverlay").style.display = "none";
+}
+
+// Modal Image Gallery
+function onClick(element, ytcode) {
+  document.getElementById("img01").src = element.src;
+  document.getElementById("modal01").style.display = "block";
+  var captionText = document.getElementById("caption");
+  captionText.innerHTML = element.alt;
+  var trailerVideo = document.getElementById("trailer");
+  trailerVideo.innerHTML = '<div class="videowrapper"><iframe width="640" height="360" src="https://www.youtube.com/embed/'+ytcode+'" frameborder="0" allowfullscreen></iframe></div>';
+
+  //Video player size
+  let wholeW = $(window).width();
+  let wholeH = $(window).height();
+  let movieW = (wholeH/1.5); 
+  if (movieW < wholeW) {
+    $('#modal01 .w3-modal-content').css({width: movieW + 'px'});
+  }
+
+  // Modal movie trailer auto resizing
+  setTimeout(function(){
+    let modalH = $('#modal01 .w3-modal-content').height() + 52;
+    $('#modal01').css({'height': modalH + 'px'});
+    $('body').css({'margin-top': modalH + 'px'});
+  }, 300);
+}
+
+// Modal Image Close
+function closeModal(element) {
+  $('iframe').each(function(index) {
+    $(this).attr('src', $(this).attr('src'));
+    return false;
+  });
+  element.style.display='none';
+  $('body').css({'margin-top': '0'});
+}
+
+// Modal close on escape key
+$(document).keyup(function(e){
+  if(e.key === "Escape") {
+    closeModal($('#modal01')[0]);
+  }
+});
+
+// On ready
+$(document).ready(function(){
+  checkImages();
+});
+
+// Bottom Scroll Listener
+var isActive = false;
+$(window).scroll(function() {
+   if( ($(window).scrollTop() + $(window).height() > $(document).height() - 600) && !isActive ) {
+    isActive = true;
+    $.get( "/loadmore", function( data ) {
+      $('.w3-main').append(data);
+      isActive = false;
+      checkImages();
+    });
+   }
+});
+
+// Image load detector
+function checkImages() {
+  // JQuery
+  $('.movie-img').on('error', (event) => {
+    const img = $(event.target);
+    img.each(function(i, obj){
+      $(this).attr('src', obj.attributes.src.value.replace('large', 'medium'));
+    });
+  });
+}
+
+// Refresh page
+function refresh() {
+  location.reload(true);
+}
+
+$(window).on('popstate', function(event) {
+ alert("pop");
+});
+
+</script>
+
+
+</body>
+</html>
