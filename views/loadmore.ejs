@@ -3,7 +3,7 @@
   <div class="w3-third">
 <% movies.forEach(function(movie, i){%>
     <div>
-      <img class="movie-img" src="<%= movie.large_cover_image %>" title="View movie trailer" style="width:100%" onclick="onClick(this,'<%=movie.yt_trailer_code%>')" 
+      <img class="movie-img" src="https://img.youtube.com/vi/<%=movie.yt_trailer_code%>/0.jpg" title="View movie trailer" style="width:100%" onclick="onClick(this,'<%=movie.yt_trailer_code%>')" 
       alt="<strong><%= movie.title_english %></strong> <br> <i>Not playing? see trailer in <a href='https://www.imdb.com/title/<%= movie.imdb_code %>' target='_blank'>IMDb<a></i>">
       <span><%= movie.rating %></span>
       <div class="torrent-download"><%= movie.title_english %> (<%= movie.language %>) | <a href="https://www.imdb.com/title/<%= movie.imdb_code %>" title="IMDb link." target="_blank">IMDb</a><br>

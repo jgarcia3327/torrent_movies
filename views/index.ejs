@@ -166,7 +166,8 @@ function checkImages() {
   $('.movie-img').on('error', (event) => {
     const img = $(event.target);
     img.each(function(i, obj){
-      $(this).attr('src', obj.attributes.src.value.replace('large', 'medium'));
+      // $(this).attr('src', obj.attributes.src.value.replace('large', 'medium'));
+      $(this).attr('src', 'https://cebushopping.com/author/images/error-large-cover.jpg');
     });
   });
 }

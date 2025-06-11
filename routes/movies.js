@@ -72,7 +72,7 @@ async function fetchYify(req, res, page) {
         }
     ).catch( err => {
         console.log(err);
-        res.render('movies/err', {error: err});
+        res.render('error.ejs', {error: err});
     });
 };
 
